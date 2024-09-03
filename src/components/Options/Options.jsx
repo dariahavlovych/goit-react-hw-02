@@ -1,12 +1,30 @@
 import React from "react";
 
-const Options = (storage) => {
+const Options = ({ onUpdate, totalFeedback, onReset }) => {
   return (
     <div>
-      <button type="button">Good</button>
-      <button type="button">Neutral</button>
-      <button type="button">Bad</button>
-      {storage && <button type="button">Reset</button>}
+      <button
+        name="good"
+        type="button"
+        onClick={(e) => onUpdate(e.target.name)}
+      >
+        Good
+      </button>
+      <button
+        name="neutral"
+        type="button"
+        onClick={(e) => onUpdate(e.target.name)}
+      >
+        Neutral
+      </button>
+      <button name="bad" type="button" onClick={(e) => onUpdate(e.target.name)}>
+        Bad
+      </button>
+      {totalFeedback > 0 && (
+        <button type="button" onClick={onReset}>
+          Reset
+        </button>
+      )}
     </div>
   );
 };
