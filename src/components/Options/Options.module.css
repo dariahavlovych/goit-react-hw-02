@@ -1,0 +1,14 @@
+.feedbackBtn {
+  display: inline-block;
+  font-size: 18px;
+  border: 1px solid rgb(129, 128, 128);
+  margin-right: 10px;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in;
+}
+
+.feedbackBtn:hover {
+  background-color: rgb(179, 179, 247);
+}

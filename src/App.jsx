@@ -1,6 +1,4 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
@@ -8,11 +6,23 @@ import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const [values, setValues] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const LS_KEY = "feedback-statistic";
+  const savedFeedbacks = window.localStorage.getItem(LS_KEY);
+
+  const [values, setValues] = useState(() => {
+    if (savedFeedbacks !== null) {
+      return JSON.parse(savedFeedbacks);
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
   });
+
+  useEffect(() => {
+    window.localStorage.setItem(LS_KEY, JSON.stringify(values));
+  }, [values]);
 
   const updateFeedback = (feedbackType) => {
     setValues({
